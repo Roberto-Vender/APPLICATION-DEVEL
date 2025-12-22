@@ -10,7 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const API_BASE = import.meta.env.VITE_API_URL || "";
 
-  // Clear previous user's progress
   const clearPreviousUserProgress = () => {
     const authKeys = ['token', 'user', 'userId'];
     Object.keys(localStorage).forEach(key => {
@@ -18,7 +17,6 @@ const Login = () => {
     });
   };
 
-  // Migrate old progress to user-scoped storage
   const migrateOldProgress = (userId) => {
     const oldProgressKeys = ['riddleProgress', 'logicProgress', 'enduranceProgress'];
     oldProgressKeys.forEach(oldKey => {
@@ -40,17 +38,9 @@ const Login = () => {
     setMessage("");
 
     try {
-      // 1️⃣ Get CSRF cookie
-      await fetch(`${API_BASE}/sanctum/csrf-cookie`, {
-        method: "GET",
-        credentials: "include",
-      });
-
-      // 2️⃣ Send login request
       const response = await fetch(`${API_BASE}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
@@ -67,7 +57,7 @@ const Login = () => {
       }
 
       setMessage("Login successful! Redirecting...");
-      setTimeout(() => navigate("/Dashboard"), 1500);
+      setTimeout(() => navigate("/dashboard"), 1500);
 
     } catch (error) {
       setMessage(error.message || "Login failed. Please check your credentials.");
@@ -82,14 +72,12 @@ const Login = () => {
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 font-poppins">
-      {/* Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md mx-4">
-        {/* Back to Home */}
         <Link to="/" className="absolute -top-16 left-1/2 transform -translate-x-1/2">
           <button className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,9 +87,7 @@ const Login = () => {
           </button>
         </Link>
 
-        {/* Login Card */}
         <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-2xl overflow-hidden animate-fade-in">
-          {/* Card Header */}
           <div className="p-8 border-b border-gray-700/50 bg-gradient-to-r from-gray-900/50 to-gray-800/30">
             <div className="text-center">
               <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -111,9 +97,7 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Card Body */}
           <div className="p-8">
-            {/* Email Input */}
             <div className="mb-6">
               <label className="block text-gray-300 mb-2">Email Address <span className="text-red-400 ml-1">*</span></label>
               <input
@@ -126,7 +110,6 @@ const Login = () => {
               />
             </div>
 
-            {/* Password Input */}
             <div className="mb-8 relative">
               <label className="block text-gray-300 mb-2">Password <span className="text-red-400 ml-1">*</span></label>
               <input
@@ -143,14 +126,12 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Message Display */}
             {message && (
               <div className={`mb-6 p-4 rounded-xl ${message.includes('successful') ? 'bg-green-900/30 border border-green-500/30' : 'bg-red-900/30 border border-red-500/30'}`}>
                 <span className={message.includes('successful') ? 'text-green-300' : 'text-red-300'}>{message}</span>
               </div>
             )}
 
-            {/* Login Button */}
             <button
               onClick={loginPost}
               disabled={loading || !email || !password}
@@ -163,11 +144,10 @@ const Login = () => {
               {loading ? "Signing In..." : "Sign In"}
             </button>
 
-            {/* Register Link */}
             <div className="text-center pt-6 border-t border-gray-700/50">
               <p className="text-gray-400">
                 Don't have an account?{' '}
-                <Link to="/Register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+                <Link to="/register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
                   Create Account
                 </Link>
               </p>

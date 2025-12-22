@@ -19,30 +19,28 @@ import LeaderBoard from "../pages/LeaderBoard";
 import Register from "../pages/Register";
 import Summary from "../pages/Summary";
 
-
-
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="HomePage" element={<HomePage />} />
-      <Route path="Login" element={<Login />} />
-      <Route path="Dashboard" element={<Dashboard />} />
-      <Route path="ChoosePuzzle" element={<ChoosePuzzle />} />
-      <Route path="Riddles" element={<Riddles />} />
-      <Route path="Correct" element={<Correct />} />
-      <Route path="Incorrect" element={<Incorrect />} />
-      <Route path="Logic" element={<Logic />} />
-      <Route path="LogicCorrect" element={<LogicCorrect />} />
-      <Route path="LogicIncorrect" element={<LogicIncorrect />} />
-      <Route path="LogicSummary" element={<LogicSummary />} />
-      <Route path="Endurance" element={<Endurance />} />
-      <Route path="EnduranceCorrect" element={<EnduranceCorrect />} />
-      <Route path="EnduranceIncorrect" element={<EnduranceIncorrect />} />
-      <Route path="EnduranceSummary" element={<EnduranceSummary />} />
-      <Route path="LeaderBoard" element={<LeaderBoard />} />
-      <Route path="Register" element={<Register />} />
-      <Route path="Summary" element={<Summary />} />
+      <Route path="/homepage" element={<HomePage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/choosepuzzle" element={<ChoosePuzzle />} />
+      <Route path="/riddles" element={<Riddles />} />
+      <Route path="/correct" element={<Correct />} />
+      <Route path="/incorrect" element={<Incorrect />} />
+      <Route path="/logic" element={<Logic />} />
+      <Route path="/logiccorrect" element={<LogicCorrect />} />
+      <Route path="/logicincorrect" element={<LogicIncorrect />} />
+      <Route path="/logicsummary" element={<LogicSummary />} />
+      <Route path="/endurance" element={<Endurance />} />
+      <Route path="/endurancecorrect" element={<EnduranceCorrect />} />
+      <Route path="/enduranceincorrect" element={<EnduranceIncorrect />} />
+      <Route path="/endurancesummary" element={<EnduranceSummary />} />
+      <Route path="/leaderboard" element={<LeaderBoard />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/summary" element={<Summary />} />
     </Routes>
   );
 }
