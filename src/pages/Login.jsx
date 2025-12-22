@@ -50,14 +50,14 @@ const Login = () => {
 
       if (data.user) {
         clearPreviousUserProgress();
-        localStorage.setItem("token", data.token || "");
+        localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("userId", data.user.user_id || data.user.id);
         migrateOldProgress(data.user.user_id || data.user.id);
       }
 
       setMessage("Login successful! Redirecting...");
-      setTimeout(() => navigate("/dashboard"), 1500);
+      setTimeout(() => navigate("/Dashboard"), 1500);
 
     } catch (error) {
       setMessage(error.message || "Login failed. Please check your credentials.");
@@ -72,6 +72,7 @@ const Login = () => {
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 font-poppins">
+      {/* Animated Background */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
@@ -88,13 +89,11 @@ const Login = () => {
         </Link>
 
         <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-700/50 shadow-2xl overflow-hidden animate-fade-in">
-          <div className="p-8 border-b border-gray-700/50 bg-gradient-to-r from-gray-900/50 to-gray-800/30">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Welcome Back
-              </h2>
-              <p className="text-gray-300 mt-2">Sign in to continue your puzzle journey</p>
-            </div>
+          <div className="p-8 border-b border-gray-700/50 bg-gradient-to-r from-gray-900/50 to-gray-800/30 text-center">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Welcome Back
+            </h2>
+            <p className="text-gray-300 mt-2">Sign in to continue your puzzle journey</p>
           </div>
 
           <div className="p-8">
@@ -147,7 +146,7 @@ const Login = () => {
             <div className="text-center pt-6 border-t border-gray-700/50">
               <p className="text-gray-400">
                 Don't have an account?{' '}
-                <Link to="/register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+                <Link to="/Register" className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
                   Create Account
                 </Link>
               </p>
