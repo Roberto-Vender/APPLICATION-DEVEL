@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { fetchWithAuth } from "../api";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
